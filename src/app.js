@@ -14,13 +14,19 @@ connectDB();
 
 const app = express();
 
+const corsOptions = {
+  origin: ["https://payment-backend-csxr.onrender.com", "https://payment-frontent-app.vercel.app/auth"], // Add your frontend's local and production URLs
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+  credentials: true, // Allow cookies and credentials
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // Routes
 app.use("/auth", authRoutes);
-app.use("/payments", paymentRoutes);
+// app.use("/payments", paymentRoutes);
 // app.use("/transactions", transactionRoutes);
 
 app.get("/", (req, res) => {
