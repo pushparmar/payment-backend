@@ -6,6 +6,11 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/auth");
 const paymentRoutes = require("./routes/payments");
 // const transactionRoutes = require("./routes/transactions");
+const connectDB = require("./config/db");
+const User = require("./models/userModel");
+
+// Connect to MongoDB
+connectDB();
 
 const app = express();
 
@@ -20,6 +25,17 @@ app.use("/payments", paymentRoutes);
 
 app.get("/", (req, res) => {
   res.send({ message: "Welcome to PayWithParmar API!" });
+});
+
+
+
+app.get("/test-mongo", async (req, res) => {
+  try {
+    const users = await User.find(); // Fetch all users
+    res.status(200).json({ success: true, users });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "MongoDB query failed", error });
+  }
 });
 
 // Start the server
