@@ -15,7 +15,7 @@ connectDB();
 const app = express();
 
 const corsOptions = {
-  origin: ["https://payment-backend-csxr.onrender.com", "https://payment-frontent-app.vercel.app/auth"], // Add your frontend's local and production URLs
+  origin: ["https://payment-frontent-app.vercel.app"], // Add your frontend's domain
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
   credentials: true, // Allow cookies and credentials
 };
