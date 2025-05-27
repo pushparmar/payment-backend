@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 // Routes
 app.use("/auth", authRoutes);
 app.use("/payments", paymentRoutes);
-app.use("/transactions", transactionRoutes);
+// app.use("/transactions", transactionRoutes);
 
 app.get("/", (req, res) => {
   res.send({ message: "Welcome to PayWithParmar API!" });
