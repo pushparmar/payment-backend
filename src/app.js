@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const authRoutes = require("./routes/auth");
 const paymentRoutes = require("./routes/payments");
-// const transactionRoutes = require("./routes/transactions");
+const transactionRoutes = require("./routes/transactions");
 const connectDB = require("./config/db");
 const User = require("./models/userModel");
 
@@ -26,8 +26,8 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/auth", authRoutes);
-// app.use("/payments", paymentRoutes);
-// app.use("/transactions", transactionRoutes);
+app.use("/payments", paymentRoutes);
+app.use("/transactions", transactionRoutes);
 
 app.get("/", (req, res) => {
   res.send({ message: "Welcome to PayWithParmar API!" });
