@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const helmet = require("helmet");
 
 const authRoutes = require("./routes/auth");
 const paymentRoutes = require("./routes/payments");
@@ -23,6 +24,7 @@ const corsOptions = {
 // Middleware
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(helmet()); // Add Helmet middleware to secure HTTP headers
 
 // Routes
 app.use("/auth", authRoutes);
@@ -32,8 +34,6 @@ app.use("/payments", paymentRoutes);
 app.get("/", (req, res) => {
   res.send({ message: "Welcome to PayWithParmar API!" });
 });
-
-
 
 app.get("/test-mongo", async (req, res) => {
   try {
